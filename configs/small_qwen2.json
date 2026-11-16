@@ -1,0 +1,47 @@
+{
+  "name": "two-task-qwen2",
+  "backbone": "qwen2",
+  "trace_length": 500,
+  "tokens": 8,
+  "rank": 8,
+  "epochs": 10,
+  "batch_size": 64,
+  "source_io_lr": 0.001,
+  "source_backbone_lr": 1e-05,
+  "increment_lr": 0.0001,
+  "anchors_per_class": 16,
+  "seeds": [
+    13,
+    42,
+    2026
+  ],
+  "attack_horizon": 5000,
+  "attack_orders": 200,
+  "attack_order_seed": 13,
+  "tasks": [
+    {
+      "name": "F0",
+      "architecture": "ARM",
+      "label_rule": "first_sbox",
+      "samples": {
+        "train": 45000,
+        "validation": 5000,
+        "attack": 5000
+      }
+    },
+    {
+      "name": "XMEGA",
+      "architecture": "AVR",
+      "label_rule": "first_sbox",
+      "samples": {
+        "train": 45000,
+        "validation": 5000,
+        "attack": 5000
+      }
+    }
+  ],
+  "accuracy_tasks": [
+    "F0",
+    "XMEGA"
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "name": "eleven-tasks",
+  "backbone": "qwen3",
+  "trace_length": 700,
+  "tokens": 8,
+  "rank": 8,
+  "epochs": 10,
+  "batch_size": 64,
+  "source_io_lr": 0.001,
+  "source_backbone_lr": 1e-05,
+  "increment_lr": 0.0001,
+  "anchors_per_class": 16,
+  "seeds": [
+    13,
+    42,
+    2026
+  ],
+  "attack_horizon": 5000,
+  "attack_orders": 200,
+  "attack_order_seed": 13,
+  "tasks": [
+    {
+      "name": "F0",
+      "architecture": "ARM",
+      "label_rule": "first_sbox",
+      "samples": {
+        "train": 45000,
+        "validation": 5000,
+        "attack": 5000
+      }
+    },
+    {
+      "name": "F1",
+      "architecture": "ARM",
+      "label_rule": "first_sbox",
+      "samples": {
+        "train": 45000,
+        "validation": 5000,
+        "attack": 5000
+      }
+    },
+    {
+      "name": "F2",
+      "architecture": "ARM",
+      "label_rule": "first_sbox",
+      "samples": {
+        "train": 45000,
+        "validation": 5000,
+        "attack": 5000
+      }
+    },
+    {
+      "name": "F3",
+      "architecture": "ARM",
+      "label_rule": "first_sbox",
+      "samples": {
+        "train": 45000,
+        "validation": 5000,
+        "attack": 5000
+      }
+    },
+    {
+      "name": "F4",
+      "architecture": "ARM",
+      "label_rule": "first_sbox",
+      "samples": {
+        "train": 45000,
+        "validation": 5000,
+        "attack": 5000
+      }
+    },
+    {
+      "name": "XMEGA",
+      "architecture": "AVR",
+      "label_rule": "first_sbox",
+      "samples": {
+        "train": 45000,
+        "validation": 5000,
+        "attack": 5000
+      }
+    },
+    {
+      "name": "ASCAD-0",
+      "architecture": "AVR",
+      "label_rule": "first_sbox",
+      "samples": {
+        "train": 45000,
+        "validation": 5000,
+        "attack": 5000
+      }
+    },
+    {
+      "name": "ASCAD-2",
+      "architecture": "AVR",
+      "label_rule": "first_sbox",
+      "samples": {
+        "train": 45000,
+        "validation": 5000,
+        "attack": 5000
+      }
+    },
+    {
+      "name": "DPA-v4",
+      "architecture": "AVR",
+      "label_rule": "first_sbox",
+      "samples": {
+        "train": 12000,
+        "validation": 3000,
+        "attack": 5000
+      }
+    },
+    {
+      "name": "DPA-v2",
+      "architecture": "FPGA",
+      "label_rule": "last_transition",
+      "samples": {
+        "train": 12000,
+        "validation": 3000,
+        "attack": 5000
+      }
+    },
+    {
+      "name": "AES_HD",
+      "architecture": "FPGA",
+      "label_rule": "last_transition",
+      "samples": {
+        "train": 12000,
+        "validation": 3000,
+        "attack": 5000
+      }
+    }
+  ],
+  "accuracy_tasks": [
+    "F0",
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "XMEGA",
+    "ASCAD-0",
+    "DPA-v4"
+  ]
+}

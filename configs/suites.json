@@ -1,0 +1,411 @@
+{
+  "main": [
+    {
+      "id": "csp",
+      "method": "csp",
+      "config": "main.json",
+      "overrides": {
+        "label": "CSP"
+      }
+    },
+    {
+      "id": "unprotected",
+      "method": "unprotected",
+      "config": "main.json",
+      "overrides": {
+        "label": "Unprotected"
+      }
+    },
+    {
+      "id": "gpm",
+      "method": "gpm",
+      "config": "main.json",
+      "overrides": {
+        "label": "GPM",
+        "gpm_lr": 0.01
+      }
+    },
+    {
+      "id": "olora",
+      "method": "olora",
+      "config": "main.json",
+      "overrides": {
+        "label": "O-LoRA",
+        "olora_coefficient": 0.5
+      }
+    },
+    {
+      "id": "inflora",
+      "method": "inflora",
+      "config": "main.json",
+      "overrides": {
+        "label": "InfLoRA"
+      }
+    },
+    {
+      "id": "inflora_m",
+      "method": "inflora_m",
+      "config": "main.json",
+      "overrides": {
+        "label": "InfLoRA-M"
+      }
+    },
+    {
+      "id": "joint",
+      "method": "joint",
+      "config": "main.json",
+      "overrides": {
+        "label": "Joint"
+      }
+    }
+  ],
+  "table3": [
+    {
+      "id": "csp",
+      "method": "csp",
+      "config": "main.json",
+      "overrides": {
+        "label": "CSP"
+      }
+    },
+    {
+      "id": "replay4k",
+      "method": "replay",
+      "config": "main.json",
+      "overrides": {
+        "label": "Replay 4k",
+        "replay_capacity": 4096
+      }
+    },
+    {
+      "id": "replay24k",
+      "method": "replay",
+      "config": "main.json",
+      "overrides": {
+        "label": "Replay 24k",
+        "replay_capacity": 24576
+      }
+    },
+    {
+      "id": "gpm_tuned",
+      "method": "gpm",
+      "config": "main.json",
+      "overrides": {
+        "label": "GPM LR 0.3",
+        "gpm_lr": 0.3
+      }
+    },
+    {
+      "id": "olora_tuned",
+      "method": "olora",
+      "config": "main.json",
+      "overrides": {
+        "label": "O-LoRA c=0.05",
+        "olora_coefficient": 0.05
+      }
+    },
+    {
+      "id": "ewc",
+      "method": "ewc",
+      "config": "main.json",
+      "overrides": {
+        "label": "EWC 100",
+        "ewc_lambda": 100.0
+      }
+    },
+    {
+      "id": "mean_fixed_a",
+      "method": "mean_fixed_a",
+      "config": "main.json",
+      "overrides": {
+        "label": "Mean, fixed A"
+      }
+    },
+    {
+      "id": "cov_ab",
+      "method": "cov_ab",
+      "config": "main.json",
+      "overrides": {
+        "label": "Covariance, train A,B"
+      }
+    },
+    {
+      "id": "cap64",
+      "method": "csp_cap",
+      "config": "main.json",
+      "overrides": {
+        "label": "CSP cap 64",
+        "memory_cap": 64
+      }
+    },
+    {
+      "id": "cap128",
+      "method": "csp_cap",
+      "config": "main.json",
+      "overrides": {
+        "label": "CSP cap 128",
+        "memory_cap": 128
+      }
+    },
+    {
+      "id": "mlp_csp",
+      "method": "csp",
+      "config": "main.json",
+      "overrides": {
+        "label": "Wide MLP + CSP",
+        "backbone": "mlp"
+      }
+    },
+    {
+      "id": "mlp_unprotected",
+      "method": "unprotected",
+      "config": "main.json",
+      "overrides": {
+        "label": "Wide MLP, free",
+        "backbone": "mlp"
+      }
+    }
+  ],
+  "backbones": [
+    {
+      "id": "qwen_csp",
+      "method": "csp",
+      "config": "main.json",
+      "overrides": {
+        "label": "Qwen3 + CSP"
+      }
+    },
+    {
+      "id": "qwen_unprotected",
+      "method": "unprotected",
+      "config": "main.json",
+      "overrides": {
+        "label": "Qwen3 Unprotected"
+      }
+    },
+    {
+      "id": "mlp_unprotected",
+      "method": "unprotected",
+      "config": "main.json",
+      "overrides": {
+        "label": "Wide MLP",
+        "backbone": "mlp"
+      }
+    },
+    {
+      "id": "transformer_unprotected",
+      "method": "unprotected",
+      "config": "main.json",
+      "overrides": {
+        "label": "Transformer",
+        "backbone": "transformer",
+        "source_backbone_lr": 0.0001
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "id": "tokens2",
+      "method": "csp",
+      "config": "six_tasks.json",
+      "overrides": {
+        "label": "Tokens 2",
+        "tokens": 2
+      }
+    },
+    {
+      "id": "tokens4",
+      "method": "csp",
+      "config": "six_tasks.json",
+      "overrides": {
+        "label": "Tokens 4",
+        "tokens": 4
+      }
+    },
+    {
+      "id": "tokens8",
+      "method": "csp",
+      "config": "six_tasks.json",
+      "overrides": {
+        "label": "Tokens 8",
+        "tokens": 8
+      }
+    },
+    {
+      "id": "tokens16",
+      "method": "csp",
+      "config": "six_tasks.json",
+      "overrides": {
+        "label": "Tokens 16",
+        "tokens": 16
+      }
+    },
+    {
+      "id": "tokens32",
+      "method": "csp",
+      "config": "six_tasks.json",
+      "overrides": {
+        "label": "Tokens 32",
+        "tokens": 32
+      }
+    }
+  ],
+  "order": [
+    {
+      "id": "xmega_early",
+      "method": "csp",
+      "config": "six_tasks.json",
+      "overrides": {
+        "label": "XMEGA after F0"
+      }
+    },
+    {
+      "id": "xmega_early_free",
+      "method": "unprotected",
+      "config": "six_tasks.json",
+      "overrides": {
+        "label": "XMEGA after F0, Unprotected"
+      }
+    },
+    {
+      "id": "xmega_last",
+      "method": "csp",
+      "config": "six_tasks.json",
+      "overrides": {
+        "label": "XMEGA last",
+        "tasks": [
+          {
+            "name": "F0",
+            "architecture": "ARM",
+            "label_rule": "first_sbox",
+            "samples": {
+              "train": 45000,
+              "validation": 5000,
+              "attack": 5000
+            }
+          },
+          {
+            "name": "F1",
+            "architecture": "ARM",
+            "label_rule": "first_sbox",
+            "samples": {
+              "train": 45000,
+              "validation": 5000,
+              "attack": 5000
+            }
+          },
+          {
+            "name": "F2",
+            "architecture": "ARM",
+            "label_rule": "first_sbox",
+            "samples": {
+              "train": 45000,
+              "validation": 5000,
+              "attack": 5000
+            }
+          },
+          {
+            "name": "F3",
+            "architecture": "ARM",
+            "label_rule": "first_sbox",
+            "samples": {
+              "train": 45000,
+              "validation": 5000,
+              "attack": 5000
+            }
+          },
+          {
+            "name": "F4",
+            "architecture": "ARM",
+            "label_rule": "first_sbox",
+            "samples": {
+              "train": 45000,
+              "validation": 5000,
+              "attack": 5000
+            }
+          },
+          {
+            "name": "XMEGA",
+            "architecture": "AVR",
+            "label_rule": "first_sbox",
+            "samples": {
+              "train": 45000,
+              "validation": 5000,
+              "attack": 5000
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "xmega_last_free",
+      "method": "unprotected",
+      "config": "six_tasks.json",
+      "overrides": {
+        "label": "XMEGA last, Unprotected",
+        "tasks": [
+          {
+            "name": "F0",
+            "architecture": "ARM",
+            "label_rule": "first_sbox",
+            "samples": {
+              "train": 45000,
+              "validation": 5000,
+              "attack": 5000
+            }
+          },
+          {
+            "name": "F1",
+            "architecture": "ARM",
+            "label_rule": "first_sbox",
+            "samples": {
+              "train": 45000,
+              "validation": 5000,
+              "attack": 5000
+            }
+          },
+          {
+            "name": "F2",
+            "architecture": "ARM",
+            "label_rule": "first_sbox",
+            "samples": {
+              "train": 45000,
+              "validation": 5000,
+              "attack": 5000
+            }
+          },
+          {
+            "name": "F3",
+            "architecture": "ARM",
+            "label_rule": "first_sbox",
+            "samples": {
+              "train": 45000,
+              "validation": 5000,
+              "attack": 5000
+            }
+          },
+          {
+            "name": "F4",
+            "architecture": "ARM",
+            "label_rule": "first_sbox",
+            "samples": {
+              "train": 45000,
+              "validation": 5000,
+              "attack": 5000
+            }
+          },
+          {
+            "name": "XMEGA",
+            "architecture": "AVR",
+            "label_rule": "first_sbox",
+            "samples": {
+              "train": 45000,
+              "validation": 5000,
+              "attack": 5000
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
