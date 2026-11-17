@@ -1,6 +1,6 @@
-# CSP: Continual Learning for Cross-Device Profiled SCA
+# CSP: Continual Profiled Side-Channel Analysis Across Heterogeneous Devices
 
-Anonymous code artifact for the paper. CSP connects leakage traces to a shared LLM classifier through a trace tokenizer and learns new tasks with class-conditioned, projected low-rank updates.
+Anonymous code artifact for the paper. The framework connects temporal leakage traces to a shared Large Language Model (LLM) through a Trace Tokenizer; Class-Conditioned Subspace Projection (CSP) learns new tasks with protected, projected low-rank updates.
 
 This repository contains the model implementation, continual-learning methods, experiment configurations, evaluation, plotting, and tests. Raw traces, pretrained weights, trained checkpoints, paper sources, and historical experiment logs are not included. The command-line interfaces use portable paths instead of the original research-workspace layout.
 
@@ -14,12 +14,12 @@ This repository contains the model implementation, continual-learning methods, e
 | Algorithm 1: source fitting, sequential updates and memory extraction | [`experiments.py`](src/csp_sca/experiments.py), [`engine.py`](src/csp_sca/engine.py) | `train`, `fit`, `update_memory` |
 | Table I: eleven tasks, architectures and label rules | [`configs/main.json`](configs/main.json), [`data.py`](src/csp_sca/data.py) | `pack`, `validate-data` |
 | Figure 3: dataset NICV | [`analysis.py`](src/csp_sca/analysis.py), [`plots.py`](src/csp_sca/plots.py) | `plot nicv` |
-| Table II: final recovery and attack-trace costs | `main` in [`configs/suites.json`](configs/suites.json), [`metrics.py`](src/csp_sca/metrics.py) | `suite --name main`, `report`; `task_costs.csv` |
-| Table III: replay, tuned baselines, memory/factor ablations and rank caps | `table3` in [`configs/suites.json`](configs/suites.json) | `suite --name table3`, `report`; `summary.csv` |
-| Figure 4: Qwen3 with/without CSP, wide MLP and Transformer | `backbones` in [`configs/suites.json`](configs/suites.json), [`models.py`](src/csp_sca/models.py) | `suite --name backbones`, `plot ge` |
-| Figure 5(a,b): task ACC and mean ACC after sequential updates | [`experiments.py`](src/csp_sca/experiments.py), [`plots.py`](src/csp_sca/plots.py) | `evaluate`, `plot retention` |
-| Figure 5(c): relative Q/V input drift | [`cli.py`](src/csp_sca/cli.py), [`analysis.py`](src/csp_sca/analysis.py) | `features`, `drift`, `plot retention --drift` |
-| Table IV: six-task token sweep | [`configs/six_tasks.json`](configs/six_tasks.json), `tokens` in [`configs/suites.json`](configs/suites.json) | `suite --name tokens`, `report` |
+| Table II: ablation comparison (recovery, inflation and ACC) | `table3` in [`configs/suites.json`](configs/suites.json) | `suite --name table3`, `report`; `summary.csv` |
+| Figure 4: Qwen3 with/without CSP, Wide MLP and Transformer | `backbones` in [`configs/suites.json`](configs/suites.json), [`models.py`](src/csp_sca/models.py) | `suite --name backbones`, `plot ge` |
+| Figure 5: final recovery heatmap and attack-trace costs | `main` in [`configs/suites.json`](configs/suites.json), [`metrics.py`](src/csp_sca/metrics.py) | `suite --name main`, `report`; `task_costs.csv` |
+| Figure 6(a,b): task ACC and mean ACC after updates | [`experiments.py`](src/csp_sca/experiments.py), [`plots.py`](src/csp_sca/plots.py) | `evaluate`, `plot retention` |
+| Figure 6(c): relative Q/V input drift | [`cli.py`](src/csp_sca/cli.py), [`analysis.py`](src/csp_sca/analysis.py) | `features`, `drift`, `plot retention --drift` |
+| Table III: six-task token sweep | [`configs/six_tasks.json`](configs/six_tasks.json), `tokens` in [`configs/suites.json`](configs/suites.json) | `suite --name tokens`, `report` |
 | Section VI-B: changing the position of XMEGA | `order` in [`configs/suites.json`](configs/suites.json) | `suite --name order` |
 | Additional LLM backbones in Section VI | [`configs/small_qwen2.json`](configs/small_qwen2.json), [`configs/small_minicpm.json`](configs/small_minicpm.json) | `train` and `evaluate` with the corresponding local model |
 
@@ -89,7 +89,7 @@ The Joint reference freezes the fitted F0 source, adds one unprotected rank-8 re
 ## Ablations and other backbones
 
 ```bash
-# Table III: replay, GPM/O-LoRA settings, EWC, factor/memory variants and caps
+# Table II: replay, GPM/O-LoRA settings, EWC, factor/memory variants, caps and backbones
 csp-sca suite --name table3 --data data --model models/Qwen3-1.7B --output runs --evaluate
 csp-sca report --runs runs/table3 --output outputs/table3
 
@@ -97,7 +97,7 @@ csp-sca report --runs runs/table3 --output outputs/table3
 csp-sca suite --name backbones --data data --model models/Qwen3-1.7B --output runs --evaluate
 csp-sca plot ge --runs runs/backbones --output outputs/fig4-ge.pdf
 
-# Table IV and Section VI-B: use the native 500-sample MCU bundles
+# Table III and Section VI-B: use the native 500-sample MCU bundles
 csp-sca suite --name tokens --data data --model models/Qwen3-1.7B --output runs --evaluate
 csp-sca suite --name order --data data --model models/Qwen3-1.7B --output runs --evaluate
 csp-sca report --runs runs/tokens --output outputs/table4
@@ -109,7 +109,7 @@ csp-sca train --config configs/small_minicpm.json --seed 13 --data data \
   --model models/MiniCPM5-1B --output runs/minicpm-seed13
 ```
 
-The wide MLP has eight residual blocks of width 2048. The independent Transformer has eight blocks, 16 attention heads, width 2048, and feed-forward width 8192. Production configurations preserve these dimensions; CPU integration tests use smaller networks to check the execution path.
+The Wide MLP has eight residual blocks of width 2048. The independent Transformer has eight blocks, 16 attention heads, width 2048, and feed-forward width 8192. Production configurations preserve these dimensions; CPU integration tests use smaller networks to check the execution path.
 
 ## Figures and metrics
 

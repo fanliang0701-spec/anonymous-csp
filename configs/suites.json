@@ -164,6 +164,26 @@
         "label": "Wide MLP, free",
         "backbone": "mlp"
       }
+    },
+    {
+      "id": "transformer_csp",
+      "method": "csp",
+      "config": "main.json",
+      "overrides": {
+        "label": "Transformer + CSP",
+        "backbone": "transformer",
+        "source_backbone_lr": 0.0001
+      }
+    },
+    {
+      "id": "transformer_unprotected",
+      "method": "unprotected",
+      "config": "main.json",
+      "overrides": {
+        "label": "Transformer, free",
+        "backbone": "transformer",
+        "source_backbone_lr": 0.0001
+      }
     }
   ],
   "backbones": [
